@@ -67,6 +67,6 @@ async def play(client: Client, message_: Message):
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path, 48000)
         mystryque = None
 
-    if mystryque is not None:
+    if mystryque is None:
         position = await sira.add(message_.chat.id, file_path)
         await res.edit_text(f"#️⃣ Queued at position {position}.")
