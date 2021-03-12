@@ -58,9 +58,9 @@ async def play(client: Client, message_: Message):
         file_path = await convert(download(url))
 
     try:
-        is_playing = True
-    except:
         is_playing = False
+    except:
+        is_playing = True
 
     if is_playing == True:
         position = await sira.add(message_.chat.id, file_path)
