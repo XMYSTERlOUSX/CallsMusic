@@ -11,28 +11,26 @@ async def start_(client: Client, message: Message):
     await message.reply_text(
         f"""<b>👋🏻 Hi {message.from_user.first_name}!</b>
 
-I am SU Music Player, an open-source bot that lets you play music in your Telegram groups.
-
-Use the buttons below to know more about me.""",
+<i>I am a Group Music Play Bot!  
+Specially designed for GroupChat with ❤️ by @xmysteriousx </i>""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "⚒ Source code", url="https://t.me/SuMusicPlayer"
+                        "⚒ BOT OWNER", url="https://t.me/xmysteriousx"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "💬 Group", url="https://t.me/su_Chats"
+                        "JOIN OUR GROUP", url="https://t.me/Rezoth_tm"
                     ),
                     InlineKeyboardButton(
-                        "Channel 🔈", url="https://t.me/su_Bots"
+                        "JOIN OUR CHANNEL", url="https://t.me/Rezoth"
                     )
                 ]
             ]
         )
     )
-
 
 @Client.on_message(
     filters.command("start")
