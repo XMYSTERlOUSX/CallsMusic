@@ -62,9 +62,9 @@ async def play(client: Client, message_: Message):
     except:
         is_playing = False
 
-    if is_playing:
+    if is_playing == False:
         position = await sira.add(message_.chat.id, file_path)
         await res.edit_text(f"#️⃣ Queued at position {position}.")
     else:
-        await res.edit_text("▶️ Playing...")
+        await res.edit_text("▶️ Playing now...")
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path, 48000)
