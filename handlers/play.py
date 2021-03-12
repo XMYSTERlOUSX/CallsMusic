@@ -59,7 +59,7 @@ async def play(client: Client, message_: Message):
 
     try:
         is_playing = tgcalls.pytgcalls.is_playing(message_.chat.id)
-    except:
+    else:
         is_playing = False
 
     if is_playing:
