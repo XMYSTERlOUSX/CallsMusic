@@ -21,7 +21,15 @@ async def play(client: Client, message_: Message):
 
     res = await message_.reply_text("🔄 Processing...")
 
+    if audio:
+        if round(audio.duration / 60) > DURATION_LIMIT:
+            raise DurationLimitError(
+                f"Videos longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided video is {audio.duration / 60} minute(s)"
+            )
 
+        file_name = audio.file_id + audio.file_name.split(".")[-1]
+        file_path = await convert(await message_.reply_to_message.download(file_name))
+    else:
         messages = [message_]
         text = ""
         offset = None
@@ -62,4 +70,3 @@ async def play(client: Client, message_: Message):
     if mystryque is None:
         position = await sira.add(message_.chat.id, file_path)
         await res.edit_text(f"#️⃣ Queued at position {position}.")
-
