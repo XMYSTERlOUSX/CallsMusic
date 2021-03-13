@@ -58,15 +58,13 @@ async def play(client: Client, message_: Message):
         file_path = await convert(download(url))
 
     try:
-        is_playing = False
+        is_playing = tgcalls.pytgcalls.is_playing(message_.chat.id)
     except:
-        is_playing = True
+        is_playing = False
 
-    if is_playing == False:
-        await res.edit_text("▶️ Playing...")
-        tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path, 48000)
-        mystryque = None
-
-    if mystryque is None:
+    if is_playing:
         position = await sira.add(message_.chat.id, file_path)
-        await res.edit_text(f"#️⃣ Queued at position {position}.")
+        await res.edit_text(f"#️⃣ Lagu dimasukkan kedalam antrian nomor {position}.")
+    else:
+        await res.edit_text("▶️ Memainkan lagu...")
+        tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path, 48000)
